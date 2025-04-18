@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 const { Pool } = require("pg");
 const userRoutes = require("./routes/users");
 const { verifySession } = require("./middleware/auth");
+const cors = require("cors"); 
+
 
 dotenv.config();
 
@@ -14,6 +16,12 @@ const db = new Pool({
   connectionString: process.env.DB_CONNECTION_STRING,
   ssl: true, // cambia a true si usas conexión segura
 });
+
+// CORS habilitado para desarrollo local
+app.use(cors({
+  origin: "http://localhost:3001" // o "*" si quieres permitir cualquier origen
+}));
+
 
 app.use(express.json());
 
