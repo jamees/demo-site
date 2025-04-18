@@ -1,0 +1,12 @@
+rules:
+  - id: missing-verify-session
+    pattern: |
+      $APP.get($PATH, $HANDLER)
+    message: "🚨 Ruta GET sin verificación de sesión (verifySession)."
+    severity: ERROR
+    languages: [javascript]
+    metadata:
+      category: security
+    condition: not
+    pattern-inside: |
+      $APP.get($PATH, verifySession, ...)

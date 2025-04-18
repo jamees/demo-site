@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Usuarios</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    form {
+      margin-top: 2rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      max-width: 400px;
+    }
+
+    input {
+      display: block;
+      margin-bottom: 1rem;
+      width: 100%;
+      padding: 8px;
+    }
+
+    button {
+      padding: 8px 16px;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Usuarios registrados</h1>
+    <label for="userIdInput">ID de usuario (x-user-id):</label>
+    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+      <input type="text" id="userIdInput" placeholder="Ingresa ID para /me" style="width: 300px;" />
+      <button id="buscarBtn">Buscar</button>
+    </div>
+  <table id="userTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Creado el</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <p id="error" class="error"></p>
+
+  <form id="registerForm">
+    <h2>Registrar nuevo usuario</h2>
+    <input type="email" id="email" placeholder="Correo electrónico" required />
+    <input type="password" id="password" placeholder="Contraseña" required />
+    <button type="submit">Registrar</button>
+    <p id="registerMsg"></p>
+  </form>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
