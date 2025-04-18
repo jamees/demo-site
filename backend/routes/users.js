@@ -14,5 +14,6 @@ module.exports = function (db) {
     res.json(result.rows[0]);
   });
 
+  
   return router;
 };
