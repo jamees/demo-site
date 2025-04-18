@@ -32,20 +32,27 @@
 
     form {
       margin-top: 2rem;
-      padding: 1rem;
-      border: 1px solid #ccc;
       max-width: 400px;
     }
 
     input {
       display: block;
-      margin-bottom: 1rem;
       width: 100%;
-      padding: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-size: medium;
     }
 
     button {
-      padding: 8px 16px;
+      background-color: #008CBA; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
     }
 
     .error {
@@ -58,9 +65,27 @@
   </style>
 </head>
 <body>
-  <h1>Usuarios registrados</h1>
+
+  <h1>Sitio Demo para Charla UV</h1>
+
+  <p>Este sitio se ha creado con la intención de demostrar algunas prácticas de ingeniería de plataformas con fines educativos e ilustrativos.</p>
+
+
+<hr>
+
+  <h2>Registrar nuevo usuario</h2>
+  <p>Ingresa un correo electrónico y su contraseña, este será usado para después probar si fue posible usar un mecanismo de seguridad para impedir que se vean datos de otros usuarios</p>
+  <form id="registerForm">
+    <input type="email" id="email" placeholder="Correo electrónico" required />
+    <input type="password" id="password" placeholder="Contraseña" required />
+    <button type="submit">Registrar</button>
+    <p id="registerMsg"></p>
+  </form>
+<hr>
+  <h2>Usuarios registrados</h2>
+    <p>Ingresa el ID de usuario para poder acceder a los datos, esto simula lo que hace un sistema que te permite entrar a un sitio web entregandote un token de acceso que posteriormente se valida en cada consulta hacia las APIs del sitio.</p>
     <label for="userIdInput">ID de usuario (x-user-id):</label>
-    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+    <div>
       <input type="text" id="userIdInput" placeholder="Ingresa ID para /me" style="width: 300px;" />
       <button id="buscarBtn">Buscar</button>
     </div>
@@ -76,13 +101,6 @@
   </table>
   <p id="error" class="error"></p>
 
-  <form id="registerForm">
-    <h2>Registrar nuevo usuario</h2>
-    <input type="email" id="email" placeholder="Correo electrónico" required />
-    <input type="password" id="password" placeholder="Contraseña" required />
-    <button type="submit">Registrar</button>
-    <p id="registerMsg"></p>
-  </form>
 
   <script type="module" src="/src/main.js"></script>
 </body>
