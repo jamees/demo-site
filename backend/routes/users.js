@@ -3,8 +3,8 @@ module.exports = function (db) {
   const router = express.Router();
   const { verifySession } = require("../middleware/auth");
 
-  router.get("/", verifySession, async (req, res) => {
-  //router.get("/", async (req, res) => {
+  //router.get("/", verifySession, async (req, res) => {
+  router.get("/", async (req, res) => {
     const result = await db.query("SELECT id, email, created_at FROM users");
     res.json(result.rows);
   });
