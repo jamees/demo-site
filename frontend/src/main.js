@@ -1,7 +1,20 @@
 const apiURL = import.meta.env.VITE_API_URL;
 
+let currentUserId = "";
+
+document.getElementById("buscarBtn").addEventListener("click", () => {
+  currentUserId = document.getElementById("userIdInput").value.trim();
+  document.getElementById("registerMsg").textContent = "";
+  document.getElementById("error").textContent = "";
+  const tbody = document.querySelector("#userTable tbody");
+  tbody.innerHTML = ""; // Limpiar tabla antes de buscar
+  cargarUsuarios();
+});
+
 function cargarUsuarios() {
-  fetch(apiURL)
+  fetch(apiURL, {
+    headers: currentUserId ? { "x-user-id": currentUserId } : {}
+  })
     .then(res => {
       if (!res.ok) throw new Error("No autorizado o error de servidor");
       return res.json();
