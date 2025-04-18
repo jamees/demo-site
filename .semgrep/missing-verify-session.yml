@@ -1,14 +1,12 @@
-
 rules:
   - id: missing-verify-session
-    patterns:
-      - pattern-either:
-          - pattern: |
-              app.get("/api/users/me", ...);
-          - pattern: |
-              router.get("/me", ...);
-    message: "🚨 Falta verificación de sesión en una ruta sensible."
+    pattern: |
+      $APP.get($PATH, $HANDLER)
+    message: "🚨 Ruta GET sin verificación de sesión (verifySession)."
     severity: ERROR
     languages: [javascript]
     metadata:
       category: security
+    condition: not
+    pattern-inside: |
+      $APP.get($PATH, verifySession, ...)
