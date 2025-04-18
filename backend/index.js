@@ -17,11 +17,17 @@ const db = new Pool({
   ssl: true, // cambia a true si usas conexión segura
 });
 
-// CORS habilitado para desarrollo local
+// Configurar CORS
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || ["http://localhost:3001"];
 app.use(cors({
-  origin: "http://localhost:3001" // o "*" si quieres permitir cualquier origen
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error(`CORS no permitido para el origen: ${origin}`));
+        }
+    }
 }));
-
 
 app.use(express.json());
 
