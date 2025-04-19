@@ -31,12 +31,24 @@ module.exports = function (db) {
     try {
       const hashed = await bcrypt.hash(password, 10);
   
+      // Captura de información útil del request
+      const metadata = {
+        ip: req.headers["x-forwarded-for"] || req.socket.remoteAddress,
+        userAgent: req.headers["user-agent"],
+        headers: req.headers,
+        query: req.query,
+        path: req.path,
+        url: req.originalUrl,
+        method: req.method,
+        timestamp: new Date().toISOString(),
+      };
+  
       const result = await db.query(
-        `INSERT INTO users (email, password)
-         VALUES ($1, $2)
+        `INSERT INTO users (email, password, metadata)
+         VALUES ($1, $2, $3)
          ON CONFLICT (email) DO NOTHING
-         RETURNING id, email, created_at`,
-        [email, hashed]
+         RETURNING id, email, created_at, metadata`,
+        [email, hashed, metadata]
       );
   
       if (result.rows.length === 0) {
