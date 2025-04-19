@@ -1,6 +1,22 @@
 const apiURL = import.meta.env.VITE_API_URL;
-
 let currentUserId = "";
+
+import { datadogRum } from '@datadog/browser-rum';
+
+datadogRum.init({
+    applicationId: '4f29f2a0-4906-4287-9144-208a2c98d33b',
+    clientToken: 'pub5c5f1f2bfdc817369d4ed601ca10eb44',
+    // `site` refers to the Datadog site parameter of your organization
+    // see https://docs.datadoghq.com/getting_started/site/
+    site: 'us5.datadoghq.com',
+    service: 'demo-uv',
+    env: 'prod',
+    // Specify a version number to identify the deployed version of your application in Datadog
+    // version: '1.0.0',
+    sessionSampleRate: 100,
+    sessionReplaySampleRate: 20,
+    defaultPrivacyLevel: 'mask-user-input',
+});
 
 document.getElementById("buscarBtn").addEventListener("click", () => {
   currentUserId = document.getElementById("userIdInput").value.trim();

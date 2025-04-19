@@ -1,3 +1,18 @@
+require('dd-trace').init({
+  service: 'demouv-backend',
+  env: process.env.NODE_ENV || 'prod',
+  url: 'https://trace.agent.datadoghq.com', // importante para cloud
+  flushInterval: 2000,
+  hostname: 'trace.agent.datadoghq.com',
+  port: 443,
+  logInjection: true,
+  runtimeMetrics: true,
+  analytics: true,
+  tags: {
+    region: 'render',
+  },
+});
+
 const express = require("express");
 const dotenv = require("dotenv");
 const { Pool } = require("pg");

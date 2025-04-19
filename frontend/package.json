@@ -6,7 +6,9 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@datadog/browser-rum": "^6.6.3"
+  },
   "devDependencies": {
     "vite": "^5.0.0"
   }
