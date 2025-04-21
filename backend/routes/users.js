@@ -6,8 +6,8 @@ module.exports = function (db) {
   const { verifySession } = require("../middleware/auth");
 
   // Listar todos los usuarios (para demo)
-  //router.get("/", verifySession, async (req, res) => {
-  router.get("/", async (req, res) => {
+  router.get("/", verifySession, async (req, res) => {
+  //router.get("/", async (req, res) => {
     const result = await db.query("SELECT id, email, created_at FROM users");
     res.json(result.rows);
   });
