@@ -7,19 +7,20 @@ module.exports = function (db) {
 
   // Listar todos los usuarios (para demo)
   router.get("/", verifySession, async (req, res) => {
+  //router.get("/", async (req, res) => {
     const result = await db.query("SELECT id, email, created_at FROM users");
     res.json(result.rows);
   });
 
   // Obtener datos del usuario autenticado
-  router.get("/me", verifySession, async (req, res) => {
+  /*router.get("/me", verifySession, async (req, res) => {
     const userId = req.headers["x-user-id"];
     const result = await db.query(
       "SELECT id, email, created_at FROM users WHERE id = $1",
       [userId]
     );
     res.json(result.rows[0]);
-  });
+  });*/
 
   router.post("/register", async (req, res) => {
     const { email, password } = req.body;
